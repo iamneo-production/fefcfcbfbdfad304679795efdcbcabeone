@@ -16,7 +16,47 @@ let conditions = [
 
 // Function to handle player moves
 const ticTacToe = (element, index) => {
-    // Your game logic here
+    if(gameBoard[index]===''&&!isGameOver()){
+        gameBoard[index]
+    }
+    
+};
+
+   
+const resetGame = () => {
+gameBoard=['','','','','','','','','']
+currentPlayer='X';
+const cells=document.querySelectorAll('.cell');
+cells.forEach(cell=>{
+    cell.textContent='';
+    cell.classList.remove('X','O');
+});
+document.querySelector('.result').textContent='Player ${currentPlayer}'s turn';
+};
+
+btns.forEach((btn, i) => {
+    btn.addEventListener('click', () => ticTacToe(btn, i));
+});
+
+document.querySelector('#reset').addEventListener('click', resetGame);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Your game logic here
 
     /*
     **Part 1: Winning Conditions (Add your code here)**
@@ -36,29 +76,11 @@ const ticTacToe = (element, index) => {
     // ...
 };
 
-    /*
-    **Part 2: Reset Function (Add your code here)**
+/*
+**Part 2: Reset Function (Add your code here)**
 
-    1. Implement a new function that resets the game to its initial state.
-    2. Ensure the 'cells', 'btns', and 'currentPlayer' variables are reset.
-    3. Update the 'result' element to indicate the current player's turn.
-    4. Re-enable all buttons for a new game.
-    */
-
-// Function to reset the game
-const resetGame = () => {
-gameBoard=['','','','','','','','','']
-currentPlayer='X';
-const cells=document.querySelectorAll('.cell');
-cells.forEach(cell=>{
-    cell.textContent='';
-    cell.classList.remove('X','O');
-});
-document.querySelector('.result').textContent='Player ${currentPlayer}'s turn';
-};
-
-btns.forEach((btn, i) => {
-    btn.addEventListener('click', () => ticTacToe(btn, i));
-});
-
-document.querySelector('#reset').addEventListener('click', resetGame);
+1. Implement a new function that resets the game to its initial state.
+2. Ensure the 'cells', 'btns', and 'currentPlayer' variables are reset.
+3. Update the 'result' element to indicate the current player's turn.
+4. Re-enable all buttons for a new game.
+*/
