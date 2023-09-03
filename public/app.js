@@ -54,7 +54,7 @@ const enableButtons = () => {
     });
 };
 
-const ticTacToe = (element, index) => {
+const handleInteraction = (element, index) => {
     if (gameBoard[index] === '' && !isGameOver()) {
         gameBoard[index] = currentPlayer;
         element.textContent = currentPlayer;
