@@ -17,12 +17,35 @@ let conditions = [
 // Function to handle player moves
 const ticTacToe = (element, index) => {
     if(gameBoard[index]===''&&!isGameOver()){
-        gameBoard[index]
+        gameBoard[index]=currentPlayer;
+        element.textContent=currentPlayer;
+        element.classList.add(currentPlayer);
+        if(checkForWin()){
+            return;
+        }
+        togglePlayer();
     }
     
 };
-
-   
+const togglePlayer=()=>{
+    currentPlayer=currentPlayer==='X'?'O':'X';
+    displayCurrentPlayer();
+};
+const togglePlayer=()=>{
+    if(!gameBoard.includes('')){
+        document.querySelector('.result').textContent='It's a draw!';
+        disableButtons();
+        return true;
+    }
+    return false;
+};
+const disableButtons=()=>{
+    const cells=document.querySelectorAll('.cell');
+    cells.forEach(cell=>{
+        cell.setAtrribute('disabled','disabled');
+    });
+};
+ 
 const resetGame = () => {
 gameBoard=['','','','','','','','','']
 currentPlayer='X';
