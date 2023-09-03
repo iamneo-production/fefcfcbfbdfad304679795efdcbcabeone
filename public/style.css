@@ -58,8 +58,16 @@ h1{
   text-align: center;
 }
 .reset-button{
-  border:2px solid#000
-  color: #fff
-  back
-
+  border:2px solid#000;
+  color: #fff;
+  background-color: #000;
+  width:100px;
+  height:40px;
+  font-size:18px;
+  cursor:pointer;
+}
+.reset-button:hover{
+  background-color: #fff;
+  color:#000;
+  transition:background-color 0.3s ease;
 }
