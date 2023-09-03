@@ -1,4 +1,4 @@
-// Initial game state
+// Initialize game state
 let gameBoard = ['', '', '', '', '', '', '', '', ''];
 let currentPlayer = 'X';
 let result = document.querySelector('.result');
@@ -14,6 +14,7 @@ let winningCombinations = [
     [2, 4, 6]
 ];
 
+// Function to check for a win
 const checkForWin = () => {
     for (const combo of winningCombinations) {
         const [a, b, c] = combo;
@@ -26,10 +27,12 @@ const checkForWin = () => {
     return false;
 };
 
+// Function to display the current player's turn
 const displayCurrentPlayer = () => {
     result.textContent = `Player ${currentPlayer}'s turn`;
 };
 
+// Function to check if the game is over
 const isGameOver = () => {
     if (!gameBoard.includes('')) {
         result.textContent = "It's a draw!";
@@ -38,6 +41,8 @@ const isGameOver = () => {
     }
     return false;
 };
+
+// Function to disable all buttons
 const disableButtons = () => {
     const cells = document.querySelectorAll('.cell');
     cells.forEach(cell => {
@@ -45,8 +50,7 @@ const disableButtons = () => {
     });
 };
 
-
-
+// Function to enable all buttons
 const enableButtons = () => {
     const cells = document.querySelectorAll('.cell');
     cells.forEach(cell => {
@@ -54,6 +58,7 @@ const enableButtons = () => {
     });
 };
 
+// Function to handle cell click
 const handleInteraction = (element, index) => {
     if (gameBoard[index] === '' && !isGameOver()) {
         gameBoard[index] = currentPlayer;
@@ -66,11 +71,13 @@ const handleInteraction = (element, index) => {
     }
 };
 
+// Function to toggle the current player
 const togglePlayer = () => {
     currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
     displayCurrentPlayer();
 };
 
+// Function to reset the game
 const resetGame = () => {
     gameBoard = ['', '', '', '', '', '', '', '', ''];
     currentPlayer = 'X';
@@ -83,54 +90,19 @@ const resetGame = () => {
     enableButtons();
 };
 
+// Add event listeners to buttons
 btns.forEach((btn, i) => {
-    btn.addEventListener('click', () => ticTacToe(btn, i));
+    btn.addEventListener('click', () => handleInteraction(btn, i));
 });
 
-document.querySelector('.reset').addEventListener('click', resetGame);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Your game logic here
-
-    /*
-    **Part 1: Winning Conditions (Add your code here)**
-
-    1. Implement the logic to check for winning conditions using the 'conditions' array.
-    2. Display a winning message in the 'result' element when a player wins.
-    3. Disable all buttons after a win.
-    */
-
-    // Your code to update the game state and check for a win
-    // ...
-
-    // Your code to display the current player's turn
-    // ...
-
-    // Your code to handle button and cell interactions
-    // ...
-
-
-/*
-**Part 2: Reset Function (Add your code here)**
-
-1. Implement a new function that resets the game to its initial state.
-2. Ensure the 'cells', 'btns', and 'currentPlayer' variables are reset.
-3. Update the 'result' element to indicate the current player's turn.
-4. Re-enable all buttons for a new game.
-*/
+// Export functions for Puppeteer testing
+module.exports = {
+    checkForWin,
+    displayCurrentPlayer,
+    isGameOver,
+    disableButtons,
+    enableButtons,
+    handleInteraction,
+    togglePlayer,
+    resetGame
+};
