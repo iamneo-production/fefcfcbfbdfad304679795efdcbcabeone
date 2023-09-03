@@ -68,12 +68,12 @@ cells.forEach(cell=>{
 });
 document.querySelector('.result').textContent='Player ${currentPlayer}'s turn';
 };
-
+const btns=document.querySelectorAll('.btn');
 btns.forEach((btn, i) => {
     btn.addEventListener('click', () => ticTacToe(btn, i));
 });
 
-document.querySelector('reset').addEventListener('click', resetGame);
+document.querySelector('.reset').addEventListener('click', resetGame);
 
 
 
