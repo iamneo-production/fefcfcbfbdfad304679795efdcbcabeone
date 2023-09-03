@@ -73,7 +73,7 @@ btns.forEach((btn, i) => {
     btn.addEventListener('click', () => ticTacToe(btn, i));
 });
 
-document.querySelector('#reset').addEventListener('click', resetGame);
+document.querySelector('reset').addEventListener('click', resetGame);
 
 
 
@@ -109,7 +109,7 @@ document.querySelector('#reset').addEventListener('click', resetGame);
 
     // Your code to handle button and cell interactions
     // ...
-};
+
 
 /*
 **Part 2: Reset Function (Add your code here)**
