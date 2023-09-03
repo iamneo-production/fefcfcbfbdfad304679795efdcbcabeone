@@ -39,18 +39,18 @@ const isGameOver = () => {
     return false;
 };
 const disableButtons = () => {
-    const btns = document.querySelectorAll('.btn');
-    btns.forEach(btn => {
-        btn.setAttribute('disabled', 'disabled');
+    const cells = document.querySelectorAll('.cell');
+    cells.forEach(cell => {
+        cell.setAttribute('disabled', 'disabled');
     });
 };
 
 
 
 const enableButtons = () => {
-    const btns = document.querySelectorAll('.btn');
-    btns.forEach(btn => {
-        btn.removeAttribute('disabled');
+    const cells = document.querySelectorAll('.cell');
+    cells.forEach(cell => {
+        cell.removeAttribute('disabled');
     });
 };
 
@@ -74,10 +74,10 @@ const togglePlayer = () => {
 const resetGame = () => {
     gameBoard = ['', '', '', '', '', '', '', '', ''];
     currentPlayer = 'X';
-    const btns = document.querySelectorAll('.btn');
-    btns.forEach(btn => {
-        btn.textContent = '';
-        btn.classList.remove('X', 'O');
+    const cells = document.querySelectorAll('.cell');
+    cells.forEach(cell => {
+        cell.textContent = '';
+        cell.classList.remove('X', 'O');
     });
     displayCurrentPlayer();
     enableButtons();
@@ -87,7 +87,7 @@ btns.forEach((btn, i) => {
     btn.addEventListener('click', () => ticTacToe(btn, i));
 });
 
-document.querySelector('#reset').addEventListener('click', resetGame);
+document.querySelector('.reset').addEventListener('click', resetGame);
 
 
 
@@ -122,7 +122,7 @@ document.querySelector('#reset').addEventListener('click', resetGame);
     // Your code to display the current player's turn
     // ...
 
-    // Your code to handle button and btn interactions
+    // Your code to handle button and cell interactions
     // ...
 
 
@@ -130,7 +130,7 @@ document.querySelector('#reset').addEventListener('click', resetGame);
 **Part 2: Reset Function (Add your code here)**
 
 1. Implement a new function that resets the game to its initial state.
-2. Ensure the 'btns', 'btns', and 'currentPlayer' variables are reset.
+2. Ensure the 'cells', 'btns', and 'currentPlayer' variables are reset.
 3. Update the 'result' element to indicate the current player's turn.
 4. Re-enable all buttons for a new game.
 */
