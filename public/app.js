@@ -13,8 +13,18 @@ let conditions = [
     [0, 4, 8],
     [2, 4, 6]
 ];
-
-// Function to handle player moves
+const checkForWin=()=>{
+    for(const combo of winningCombinations){
+        const[a,b,c]=combo;
+        if(gameBoard[a]&& gameBoard[a]===gameBoard[b]&&gameBoard[a]===gameBoard[c]){
+            document.querySelector('.result').textContent='Player ${currentPlayer} wins!';
+            disableButtons();
+            return true;
+        }
+    }
+    return false;
+};
+const displayC
 const ticTacToe = (element, index) => {
     if(gameBoard[index]===''&&!isGameOver()){
         gameBoard[index]=currentPlayer;
