@@ -24,7 +24,9 @@ const checkForWin=()=>{
     }
     return false;
 };
-const displayC
+const displayCurrentPlayer=()=>{
+    document.querySelector('.result').textContent='Player ${currentPlayer}'s turn;
+};
 const ticTacToe = (element, index) => {
     if(gameBoard[index]===''&&!isGameOver()){
         gameBoard[index]=currentPlayer;
