@@ -1,9 +1,9 @@
 // Initial game state
-let cells = ['', '', '', '', '', '', '', '', ''];
+let gameBoard = ['', '', '', '', '', '', '', '', ''];
 let currentPlayer = 'X';
 let result = document.querySelector('.result');
 let btns = document.querySelectorAll('.btn');
-let conditions = [
+let winningCombinations = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
@@ -13,67 +13,82 @@ let conditions = [
     [0, 4, 8],
     [2, 4, 6]
 ];
-const checkForWin=()=>{
-    for(const combo of winningCombinations){
-        const[a,b,c]=combo;
-        if(gameBoard[a]&& gameBoard[a]===gameBoard[b]&&gameBoard[a]===gameBoard[c]){
-            document.querySelector('.result').textContent='Player ${currentPlayer} wins!';
+
+const checkForWin = () => {
+    for (const combo of winningCombinations) {
+        const [a, b, c] = combo;
+        if (gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c]) {
+            result.textContent = `Player ${currentPlayer} wins!`;
             disableButtons();
             return true;
         }
     }
     return false;
 };
-const displayCurrentPlayer=()=>{
-    document.querySelector('.result').textContent='Player ${currentPlayer}'s turn;
+
+const displayCurrentPlayer = () => {
+    result.textContent = `Player ${currentPlayer}'s turn`;
 };
-const ticTacToe = (element, index) => {
-    if(gameBoard[index]===''&&!isGameOver()){
-        gameBoard[index]=currentPlayer;
-        element.textContent=currentPlayer;
-        element.classList.add(currentPlayer);
-        if(checkForWin()){
-            return;
-        }
-        togglePlayer();
-    }
-    
-};
-const togglePlayer=()=>{
-    currentPlayer=currentPlayer==='X'?'O':'X';
-    displayCurrentPlayer();
-};
-const togglePlayer=()=>{
-    if(!gameBoard.includes('')){
-        document.querySelector('.result').textContent='It's a draw!';
+
+const isGameOver = () => {
+    if (!gameBoard.includes('')) {
+        result.textContent = "It's a draw!";
         disableButtons();
         return true;
     }
     return false;
 };
-const disableButtons=()=>{
-    const cells=document.querySelectorAll('.cell');
-    cells.forEach(cell=>{
-        cell.setAtrribute('disabled','disabled');
+const disableButtons = () => {
+    const cells = document.querySelectorAll('.cell');
+    cells.forEach(cell => {
+        cell.setAttribute('disabled', 'disabled');
     });
 };
- 
-const resetGame = () => {
-gameBoard=['','','','','','','','','']
-currentPlayer='X';
-const cells=document.querySelectorAll('.cell');
-cells.forEach(cell=>{
-    cell.textContent='';
-    cell.classList.remove('X','O');
-});
-document.querySelector('.result').textContent='Player ${currentPlayer}'s turn';
+
+
+
+const enableButtons = () => {
+    const cells = document.querySelectorAll('.cell');
+    cells.forEach(cell => {
+        cell.removeAttribute('disabled');
+    });
 };
-const btns=document.querySelectorAll('.btn');
+
+const ticTacToe = (element, index) => {
+    if (gameBoard[index] === '' && !isGameOver()) {
+        gameBoard[index] = currentPlayer;
+        element.textContent = currentPlayer;
+        element.classList.add(currentPlayer);
+        if (checkForWin()) {
+            return;
+        }
+        togglePlayer();
+    }
+};
+
+const togglePlayer = () => {
+    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+    displayCurrentPlayer();
+};
+
+const resetGame = () => {
+    gameBoard = ['', '', '', '', '', '', '', '', ''];
+    currentPlayer = 'X';
+    const cells = document.querySelectorAll('.cell');
+    cells.forEach(cell => {
+        cell.textContent = '';
+        cell.classList.remove('X', 'O');
+    });
+    displayCurrentPlayer();
+    enableButtons();
+};
+
 btns.forEach((btn, i) => {
     btn.addEventListener('click', () => ticTacToe(btn, i));
 });
 
 document.querySelector('.reset').addEventListener('click', resetGame);
+
 
 
 
